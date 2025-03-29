@@ -1,5 +1,7 @@
 package taco_proj.taco_cloud.web;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +44,7 @@ public class OrderController {
             return "orderForm";
         }
         
+        order.setPlacedAt(new Date());
         orderRepository.save(order);
         // exit session
         sessionStatus.setComplete();

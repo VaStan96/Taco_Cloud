@@ -16,7 +16,7 @@ create table if not exists Taco (
     name varchar(50) not null,
     taco_order bigint not null,
     taco_order_key bigint not null,
-    createdAt timestamp
+    created_At timestamp
 );
 
 create table if not exists Ingredient (
