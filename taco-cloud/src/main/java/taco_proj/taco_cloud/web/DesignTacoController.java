@@ -20,10 +20,7 @@ import taco_proj.taco_cloud.Ingredient;
 import taco_proj.taco_cloud.Ingredient.Type;
 import taco_proj.taco_cloud.Taco;
 import taco_proj.taco_cloud.TacoOrder;
-import taco_proj.taco_cloud.TacoUDTUtils;
 import taco_proj.taco_cloud.data.IngredientRepository;
-import taco_proj.taco_cloud.data.TacoRepository;
-
 
 
 @Slf4j
@@ -33,12 +30,10 @@ import taco_proj.taco_cloud.data.TacoRepository;
 public class DesignTacoController {
 
     private final IngredientRepository ingredientRepository;
-    private final TacoRepository tacoRepository;
 
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepository, TacoRepository tacoRepository){
+    public DesignTacoController(IngredientRepository ingredientRepository){
         this.ingredientRepository = ingredientRepository;
-        this.tacoRepository = tacoRepository;
     }
     
     // add object in Model
@@ -88,16 +83,13 @@ public class DesignTacoController {
             //return View from resources/template
             int c = errors.getErrorCount();
             for (int i =0; i<c; i++){
-                log.warn("!!!!!!!!!!Errors - {}", errors.getAllErrors().get(i));
+                log.warn("Errors - {}", errors.getAllErrors().get(i));
             }
-            
             return "design";
         }
         
-        tacoRepository.save(taco);
-        tacoOrder.addTaco(TacoUDTUtils.toTacoUDT(taco));
+        tacoOrder.addTaco(taco);
         log.info("Processing taco: {}", taco);
         return "redirect:/orders/current";
     }
-    
 }

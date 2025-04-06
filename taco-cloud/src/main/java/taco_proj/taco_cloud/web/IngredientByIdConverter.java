@@ -7,12 +7,10 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import taco_proj.taco_cloud.Ingredient;
-import taco_proj.taco_cloud.IngredientUDT;
-import taco_proj.taco_cloud.TacoUDTUtils;
 import taco_proj.taco_cloud.data.IngredientRepository;
 
 @Component
-public class IngredientByIdConverter implements Converter<String, IngredientUDT>{
+public class IngredientByIdConverter implements Converter<String, Ingredient>{
     
     private IngredientRepository ingredientRepository;
 
@@ -22,10 +20,10 @@ public class IngredientByIdConverter implements Converter<String, IngredientUDT>
     }
 
     @Override
-    public IngredientUDT convert(String id){
+    public Ingredient convert(String id){
         Ingredient ingredient = ingredientRepository.findById(id).orElse(null);
         if (ingredient != null){
-            return TacoUDTUtils.toIngredientUDT(ingredient);
+            return ingredient;
         }
         return null;
     }
