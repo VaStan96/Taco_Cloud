@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.data.repository.CrudRepository;
 
-import taco_proj.taco_cloud.TacoOrder;
+import taco_proj.taco_cloud.Taco;
 
-
-public interface OrderRepository extends CrudRepository<TacoOrder, UUID>{
+public interface  TacoRepository extends CrudRepository<Taco, UUID>{
+    
 }
