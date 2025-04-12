@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -22,15 +20,16 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
-@Document(collection="orders")
+@Entity
 public class TacoOrder implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    private String id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
-    private Date placedAt = new Date();
+    private Date placedAt;
     
     // checking validate (not null)
     @NotBlank(message="Delivery name is required")
