@@ -1,0 +1,61 @@
+package taco_proj.taco_cloud.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+import taco_proj.taco_cloud.User;
+import taco_proj.taco_cloud.data.UserRepository;
+
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        // Type for password encoding (NoOpPasswordEncoder, StandardPasswordEncoder, BCryptPasswordEncoder)
+        return new BCryptPasswordEncoder();
+    }
+    
+    @Bean
+    // UserDetailsService is functional interface
+    // wir return lambda-function
+    public UserDetailsService userDetailsService(UserRepository userRepository){
+        return username -> {
+            User user = userRepository.findByUsername(username);
+            if (user != null) return user;
+            throw new UsernameNotFoundException("User '" + username + "' not found");
+        };
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+        http
+        .authorizeHttpRequests((authorizeHttpRequest) ->
+            authorizeHttpRequest
+            .requestMatchers("/design", "/orders").hasRole("USER")
+            .requestMatchers("/", "/**", "/h2-console/**").permitAll()
+        )
+        .formLogin((formLogin) ->
+            formLogin
+            .loginPage("/login")
+            .defaultSuccessUrl("/design")
+        )
+        .logout(withDefaults())
+        .csrf((csrf)->
+            csrf
+            .ignoringRequestMatchers("/h2-console/**")
+        )
+        .headers((headers)->
+            headers.frameOptions(frame->frame.disable())
+        );
+        return http.build();
+    }
+}

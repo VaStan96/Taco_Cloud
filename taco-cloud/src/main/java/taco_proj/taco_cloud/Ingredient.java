@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
 @Document(collection="ingredients")
 public class Ingredient {
-
     @Id
     private String id;
     private String name;
