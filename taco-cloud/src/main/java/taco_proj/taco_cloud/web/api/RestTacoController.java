@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping(path="/api/tacos", produces="application/json")
-// @CrossOrigin(origins="http://tacocloud:8080")
+@CrossOrigin(origins="http://tacocloud:8080")
 public class RestTacoController {
 
     private final TacoRepository tacoRepository;

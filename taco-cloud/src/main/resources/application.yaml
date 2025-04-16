@@ -11,6 +11,10 @@ spring:
     name: tacocloud
     username: user
     password: user
+  
+  data:
+    rest:
+      base-path: /data-api
 
 # Propertie in OrderProps
 taco:
