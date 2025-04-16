@@ -41,7 +41,7 @@ public class SecurityConfig {
         .authorizeHttpRequests((authorizeHttpRequest) ->
             authorizeHttpRequest
             .requestMatchers("/design", "/orders").hasRole("USER")
-            .requestMatchers("/", "/**", "/h2-console/**").permitAll()
+            .requestMatchers("/", "/**", "/h2-console/**", "/api/**").permitAll()
         )
         .formLogin((formLogin) ->
             formLogin
@@ -51,7 +51,7 @@ public class SecurityConfig {
         .logout(withDefaults())
         .csrf((csrf)->
             csrf
-            .ignoringRequestMatchers("/h2-console/**")
+            .ignoringRequestMatchers("/h2-console/**", "/api/**")
         )
         .headers((headers)->
             headers.frameOptions(frame->frame.disable())
