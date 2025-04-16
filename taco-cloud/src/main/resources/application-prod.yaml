@@ -1,0 +1,18 @@
+# This file is used for prod profiles
+# To activate this profile you need to use 
+# an environment variable (% export SPRING_PROFILES_ACTIVE=prod) 
+# or command line arguments (% java -jar taco-cloud.jar --spring.profiles.active=prod)
+
+
+spring:
+    application:
+        name: taco-cloud
+
+    datasource:
+        url: jdbc:mysql://localhost/tacocloud
+        username: tacouser
+        password: tacopassword
+
+logging:
+    level:
+        tacos: WARN

@@ -1,3 +1,7 @@
+# This file is used for all profiles 
+# except those allocated by other files 
+# (for example prod or test)
+
 spring:
   application:
     name: taco-cloud
@@ -7,4 +11,24 @@ spring:
     name: tacocloud
     username: user
     password: user
+
+# Propertie in OrderProps
+taco:
+  orders:
+    pageSize: 10
+
+# Settings for logging
+# Use this or logback.xml
+# _______________
+# logging:
+#   level:
+#     root: WARN
+#     org:
+#       springframework:
+#         security: DEBUG
+
+# Use fillers for mix
+# ____________________
+# greeting:
+#   welcome: You are using ${spring.application.name}.
 

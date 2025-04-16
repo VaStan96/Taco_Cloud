@@ -3,6 +3,7 @@ package taco_proj.taco_cloud.web;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -25,6 +26,8 @@ public class WebConfig implements WebMvcConfigurer{
     // It is annotated as a 'Bean' component because it returns a lambda function
     // alternative: using the file data.sql
     @Bean
+    // This component will be created if the "prod" or "qa" profile is not enabled
+    @Profile({"!prod", "!qa"})
     public ApplicationRunner dataloader(IngredientRepository ingredientRepository){
         return args -> {
             ingredientRepository.save(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP));
