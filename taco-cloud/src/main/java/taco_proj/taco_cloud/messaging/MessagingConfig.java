@@ -1,36 +1,47 @@
 package taco_proj.taco_cloud.messaging;
 
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
-import org.springframework.jms.support.converter.MessageType;
-
-import jakarta.jms.ConnectionFactory;
 
 @Configuration
 public class MessagingConfig {
-    
-    // ---Default path in queue as object---
-    // @Bean
-    // public Destination orderQueue(){
-    //     return new ActiveMQQueue("tacocloud.order.queue");
-    // }
+
+    public static final String QUEUE_NAME = "kitchens.central";
+    public static final String EXCHANGE_NAME = "tacocloud.order";
 
     @Bean
-    public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory){
-        JmsTemplate template = new JmsTemplate(connectionFactory);
-        template.setMessageConverter(messageConverter());
-        return template;
+    public Queue orderQueue(){
+        return new Queue(QUEUE_NAME, true);
+    }
+
+    @Bean
+    public TopicExchange orderExchange(){
+        return new TopicExchange(EXCHANGE_NAME);
+    }
+
+    @Bean
+    public Binding binding(Queue orderQueue, TopicExchange orderExchange){
+        return BindingBuilder.bind(orderQueue).to(orderExchange).with("kitchens.#");
+    }
+
+    @Bean
+    public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
+        return new RabbitAdmin(connectionFactory);
     }
     
     // ---Converter for Object to Message---
     @Bean
-    public MappingJackson2MessageConverter messageConverter(){
-        MappingJackson2MessageConverter messageConverter = new MappingJackson2MessageConverter();
-        messageConverter.setTargetType(MessageType.TEXT);
-        messageConverter.setTypeIdPropertyName("_type");
-
+    public Jackson2JsonMessageConverter messageConverter(){
+        Jackson2JsonMessageConverter messageConverter = new Jackson2JsonMessageConverter();
         return messageConverter;
     }
+
+
 }

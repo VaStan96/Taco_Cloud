@@ -2,7 +2,7 @@ package kitchen.demo;
 
 import org.springframework.stereotype.Service;
 
-import kitchen.demo.Messaging.JmsOrderReceiver;
+import kitchen.demo.Messaging.RabbitOrderReceiver;
 import kitchen.demo.Messaging.OrderReceiver;
 
 @Service
@@ -10,7 +10,7 @@ public class KitchenService {
 
     private final OrderReceiver jms;
 
-    public KitchenService(JmsOrderReceiver jms){
+    public KitchenService(RabbitOrderReceiver jms){
         this.jms = jms;
     }
 
