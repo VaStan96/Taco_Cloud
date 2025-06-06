@@ -22,9 +22,12 @@ spring:
         jwt:
           jwk-set-uri: http://localhost:9000/oauth2/jwks
   
-  rabbitmq:
-    host: localhost
-    port: 5672
+  kafka:
+    bootstrap-servers:
+    - localhost:9092
+    producer:
+      value-serializer:
+        org.springframework.kafka.support.serializer.JsonSerializer
   
 
 # Propertie in OrderProps

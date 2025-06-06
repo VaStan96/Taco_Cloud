@@ -1,24 +1,25 @@
 package kitchen.demo;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 import org.springframework.stereotype.Service;
 
-import kitchen.demo.Messaging.RabbitOrderReceiver;
-import kitchen.demo.Messaging.OrderReceiver;
 
 @Service
 public class KitchenService {
 
-    private final OrderReceiver jms;
-
-    public KitchenService(RabbitOrderReceiver jms){
-        this.jms = jms;
-    }
+    private final Deque<TacoOrder> orders = new ArrayDeque<>();
 
     public TacoOrder takeNewOrder(){
-        return jms.receiveOrder();
+        return orders.pollFirst();
     }
 
     public void altOrder(Long id){
 
+    }
+
+    public void addOrder(TacoOrder order){
+        orders.addLast(order);
     }
 }

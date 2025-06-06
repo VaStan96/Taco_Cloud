@@ -38,7 +38,7 @@ public class KitchenController {
     
     
     private String prepareOrderModel(Model model){
-        model.addAttribute("order",service.takeNewOrder());
+        model.addAttribute("order", service.takeNewOrder());
         return "kitchen";
     }
 }
