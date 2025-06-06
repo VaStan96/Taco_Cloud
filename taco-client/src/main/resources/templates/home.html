@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Admin Panel</title>
+    </head>
+    <body>
+        <h1>Admin Panel</h1>
+
+        <!-- GET-Button -->
+        <form th:action="@{/admin/ingredients}" method="get">
+            <button type="submit">Get ingredients</button>
+        </form>
+
+        <!-- POST-Button -->
+        <form th:action="@{/admin/ingredients}" method="post">
+            <label>ID:</label>
+            <input type="text" th:field="*{ingredient.id}" /><br/>
+            
+            <label>Name:</label>
+            <input type="text" th:field="*{ingredient.name}" /><br/>
+            
+            <label>Type:</label>
+            <select th:field="*{ingredient.type}">
+                <option th:each="type : ${T(client.taco_client.Ingredient.Type).values()}"
+                        th:value="${type}" th:text="${type}">WRAP</option>
+            </select><br/>
+            
+            <button type="submit">Post ingredient</button>
+        </form>
+    </body>
+</html>

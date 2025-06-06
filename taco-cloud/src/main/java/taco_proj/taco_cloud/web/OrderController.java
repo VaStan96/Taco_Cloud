@@ -20,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import taco_proj.taco_cloud.TacoOrder;
 import taco_proj.taco_cloud.User;
 import taco_proj.taco_cloud.data.OrderRepository;
+import taco_proj.taco_cloud.messaging.OrderMessagingService;
 import taco_proj.taco_cloud.propsHolders.OrderProps;
 
 
@@ -32,12 +33,14 @@ public class OrderController {
 
     private final OrderRepository orderRepository;
     private final OrderProps orderProps;
+    private final OrderMessagingService messageService;
 
     @Autowired
     public OrderController(OrderRepository orderRepository,
-                            OrderProps orderProps){
+                            OrderProps orderProps, OrderMessagingService messageService){
         this.orderRepository = orderRepository;
         this.orderProps = orderProps;
+        this.messageService = messageService;
     }
     
     @GetMapping("/current")
@@ -73,7 +76,11 @@ public class OrderController {
         order.setUser(user);
         order.setPlacedAt(new Date());
 
-        orderRepository.save(order);
+        order = orderRepository.save(order);
+        
+        // JMS
+        messageService.sendOrder(order);
+
         // exit session
         sessionStatus.setComplete();
         // to Home

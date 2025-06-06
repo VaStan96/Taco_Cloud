@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KITCHEN</title>
+</head>
+<body>
+    <h1>KITCHEN</h1>
+    </p>
+    </p>
+    </p>
+
+    <div th:if="${order == null}">
+        <p>There are no new orders</p>
+        </p>
+        <form th:action="@{/kitchen/takeNew}" method="post">
+            <button type="submit">Take New</button>
+        </form>
+    </div>
+
+    <div th:if="${order != null}">
+        <p>ID: <span th:text="${order.id}"></span></p>
+        <p>Date: <span th:text="${order.placedAt}"></span></p>
+        </p>
+        <p>Name: <span th:text="${order.deliveryName}"></span></p>
+        <p>Street: <span th:text="${order.deliveryStreet}"></span></p>
+        <p>City: <span th:text="${order.deliveryCity}"></span></p>
+        <p>State: <span th:text="${order.deliveryState}"></span></p>
+        <p>ZIP: <span th:text="${order.deliveryZip}"></span></p>
+        </p>
+        <p>Tacos:</p>
+        <ul>
+            <li th:each="taco : ${order.tacos}">
+                <p>TacoId: <span th:text="${taco.id}"></span></p>
+                <p>TacoName: <span th:text="${taco.name}"></span></p>
+                <p>Ingredients:</p>
+                <ul>
+                    <li th:each="ingredient : ${taco.ingredients}">
+                        <p>TacoId: <span th:text="${ingredient.type}"></span></p>
+                        <p>TacoName: <span th:text="${ingredient.name}"></span></p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+        <form th:action="@{/kitchen/takeNew}" method="post" style="display:inline;">
+            <button type="submit">Take New</button>
+        </form>
+
+        <form th:action="@{/kitchen/send(id = ${order.id})}" method="post" style="display:inline;">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: taco-client
+  security:
+    oauth2:
+      client:
+        registration:
+          taco-admin-client:
+            provider: tacocloud
+            client-id: taco-admin-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:9090/login/oauth2/code/taco-admin-client"
+            scope: writeIngredients, deleteIngredients, openid
+            # scope: writeIngredients,deleteIngredients,getOrders,postOrders,deleteOrders,putOrders,patchOrders,openid
+
+        provider:
+          tacocloud:
+            issuer-uri: http://localhost:9000
+
+logging:
+  level:
+    org.springframework.security.oauth2.client: DEBUG
+    org.springframework.security.oauth2.core: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG

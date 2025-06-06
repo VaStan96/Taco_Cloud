@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import taco_proj.taco_cloud.TacoOrder;
 import taco_proj.taco_cloud.data.OrderRepository;
+import taco_proj.taco_cloud.messaging.OrderMessagingService;
+
 
 @RestController
 @RequestMapping(path="/api/orders", produces="application/json")
@@ -21,11 +24,21 @@ import taco_proj.taco_cloud.data.OrderRepository;
 public class RestOrderController {
 
     private final OrderRepository orderRepository;
+    private final OrderMessagingService messageService;
 
-    public RestOrderController (OrderRepository orderRepository){
+    public RestOrderController (OrderRepository orderRepository, OrderMessagingService messageService){
         this.orderRepository = orderRepository;
+        this.messageService = messageService;
     }
     
+    @PostMapping(consumes="application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TacoOrder postOrder(@RequestBody TacoOrder order) {
+        messageService.sendOrder(order);
+        return orderRepository.save(order);
+    }
+    
+
     // change the entire object, despite empty fields
     @PutMapping(path="/{orderId}", consumes="application/json")
     public TacoOrder putOrder(@PathVariable("orderId") Long orderId, 

@@ -1,12 +1,13 @@
-package taco_proj.taco_cloud;
+package auth.auth_server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TacoCloudApplication {
+public class AuthServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TacoCloudApplication.class, args);
+		SpringApplication.run(AuthServerApplication.class, args);
 	}
+
 }

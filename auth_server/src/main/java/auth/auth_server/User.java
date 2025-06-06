@@ -1,4 +1,4 @@
-package taco_proj.taco_cloud;
+package auth.auth_server;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -32,27 +32,12 @@ public class User implements UserDetails{
 
     private final String username;
     private final String password;
-    private final String fullname;
-    private final String street;
-    private final String city;
-    private final String state;
-    private final String zip;
-    private final String phoneNumber;
-
-    public User (String username, String password, String fullname, String street, String city, String state, String zip, String phoneNumber){
+    private final String role;
+    
+    public User (String username, String password, String role){
         this.username = username;
         this.password = password;
-        this.fullname = fullname;
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities(){
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        this.role = role;
     }
 
     @Override
@@ -73,15 +58,10 @@ public class User implements UserDetails{
     @Override
     public boolean isEnabled(){
         return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority(role));
     }    
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
 }

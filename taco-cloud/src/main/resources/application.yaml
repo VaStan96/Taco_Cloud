@@ -16,6 +16,16 @@ spring:
     rest:
       base-path: /data-api
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9000/oauth2/jwks
+  
+  activemq:
+    broker-url: tcp://localhost:61616
+  
+
 # Propertie in OrderProps
 taco:
   orders:
