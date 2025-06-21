@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import taco_proj.taco_cloud.TacoOrder;
+import taco_proj.taco_cloud.entity.TacoOrder;
 
 @Service
 public class KafkaOrderMessagingService implements OrderMessagingService{

@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "taco.orders.page-size",
-  "type": "java.lang.Integer",
-  "description": "Sets the maximum number of orders to display in a list"
-}]}
+{"properties": [
+  {
+    "name": "taco.orders.page-size",
+    "type": "java.lang.Integer",
+    "description": "Sets the maximum number of orders to display in a list"
+  },
+  {
+    "name": "taco.from_mail_key",
+    "type": "java.lang.String",
+    "description": "A description for 'taco.from_mail_key'"
+  }
+]}

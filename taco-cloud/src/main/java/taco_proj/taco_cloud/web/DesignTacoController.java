@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import taco_proj.taco_cloud.Ingredient;
-import taco_proj.taco_cloud.Ingredient.Type;
-import taco_proj.taco_cloud.Taco;
-import taco_proj.taco_cloud.TacoOrder;
 import taco_proj.taco_cloud.data.IngredientRepository;
+import taco_proj.taco_cloud.entity.Ingredient;
+import taco_proj.taco_cloud.entity.Taco;
+import taco_proj.taco_cloud.entity.TacoOrder;
+import taco_proj.taco_cloud.entity.Ingredient.Type;
 
 
 @Slf4j

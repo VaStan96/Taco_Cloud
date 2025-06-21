@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import taco_proj.taco_cloud.Taco;
+import taco_proj.taco_cloud.entity.Taco;
 
 public interface TacoRepository extends CrudRepository<Taco, Long>{
 

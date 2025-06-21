@@ -1,4 +1,4 @@
-package kitchen.demo;
+package kitchen.demo.Data;
 
 import java.util.ArrayList;
 import java.util.Date;

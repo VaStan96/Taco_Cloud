@@ -1,4 +1,4 @@
-package taco_proj.taco_cloud;
+package taco_proj.taco_cloud.entity;
 
 import java.util.ArrayList;
 import java.util.Date;

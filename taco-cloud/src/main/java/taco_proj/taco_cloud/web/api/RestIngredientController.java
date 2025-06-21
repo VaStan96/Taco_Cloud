@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import taco_proj.taco_cloud.Ingredient;
 import taco_proj.taco_cloud.data.IngredientRepository;
+import taco_proj.taco_cloud.entity.Ingredient;
 
 @RestController
 @RequestMapping(path="/api/ingredients", produces="application/json")

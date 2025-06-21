@@ -1,4 +1,4 @@
-package taco_proj.taco_cloud;
+package taco_proj.taco_cloud.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

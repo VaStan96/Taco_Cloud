@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import kitchen.demo.KitchenService;
-import kitchen.demo.TacoOrder;
+import kitchen.demo.Data.TacoOrder;
+import kitchen.demo.Service.KitchenService;
 
 @Component
 public class KafkaOrderListener {

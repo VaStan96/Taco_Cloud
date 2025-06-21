@@ -15,8 +15,8 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import taco_proj.taco_cloud.User;
 import taco_proj.taco_cloud.data.UserRepository;
+import taco_proj.taco_cloud.entity.User;
 
 @Configuration
 @EnableMethodSecurity
@@ -51,6 +51,7 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.PUT, "/api/orders").hasAuthority("SCOPE_putOrders")
             .requestMatchers(HttpMethod.PATCH, "/api/orders").hasAuthority("SCOPE_patchOrders")
             .requestMatchers(HttpMethod.DELETE, "/api/orders").hasAuthority("SCOPE_deleteOrders")
+            .requestMatchers(HttpMethod.POST, "/orders/fromEmail").permitAll()
             .requestMatchers("/design", "/orders").hasRole("USER")
             .requestMatchers("/", "/**", "/h2-console/**").permitAll()
         )

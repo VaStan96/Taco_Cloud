@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import taco_proj.taco_cloud.TacoOrder;
 import taco_proj.taco_cloud.data.OrderRepository;
+import taco_proj.taco_cloud.entity.TacoOrder;
 import taco_proj.taco_cloud.messaging.OrderMessagingService;
 
 

@@ -1,4 +1,4 @@
-package kitchen.demo;
+package kitchen.demo.Data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

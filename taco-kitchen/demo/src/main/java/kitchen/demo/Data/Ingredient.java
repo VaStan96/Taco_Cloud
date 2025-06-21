@@ -1,4 +1,4 @@
-package kitchen.demo;
+package kitchen.demo.Data;
 import lombok.Data;
 
 @Data

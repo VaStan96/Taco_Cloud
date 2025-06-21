@@ -1,4 +1,4 @@
-package kitchen.demo;
+package taco_email.demo.Data;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,4 +13,8 @@ public class Taco {
     private String name;
     private List<Ingredient> ingredients = new ArrayList<>();
     private Date createdAt = new Date();
+
+    public Taco(String tacoName) {
+        this.name = tacoName;
+    }
 }

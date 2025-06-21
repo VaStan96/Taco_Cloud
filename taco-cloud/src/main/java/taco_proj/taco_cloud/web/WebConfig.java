@@ -10,13 +10,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import taco_proj.taco_cloud.Ingredient;
-import taco_proj.taco_cloud.Ingredient.Type;
-import taco_proj.taco_cloud.Taco;
-import taco_proj.taco_cloud.User;
 import taco_proj.taco_cloud.data.IngredientRepository;
 import taco_proj.taco_cloud.data.TacoRepository;
 import taco_proj.taco_cloud.data.UserRepository;
+import taco_proj.taco_cloud.entity.Ingredient;
+import taco_proj.taco_cloud.entity.Taco;
+import taco_proj.taco_cloud.entity.User;
+import taco_proj.taco_cloud.entity.Ingredient.Type;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer{

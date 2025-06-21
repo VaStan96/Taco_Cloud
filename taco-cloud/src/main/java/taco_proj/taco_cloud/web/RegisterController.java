@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import taco_proj.taco_cloud.RegForm;
 import taco_proj.taco_cloud.data.UserRepository;
+import taco_proj.taco_cloud.entity.RegForm;
 
 
 @Controller
@@ -35,7 +35,5 @@ public class RegisterController {
     public String processRegistration(RegForm regForm) {
         userRepository.save(regForm.toUser(passwordEncoder));
         return "redirect:/login";
-    }
-    
-    
+    }  
 }

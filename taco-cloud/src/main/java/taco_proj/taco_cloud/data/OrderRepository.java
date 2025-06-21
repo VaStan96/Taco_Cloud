@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
-import taco_proj.taco_cloud.TacoOrder;
-import taco_proj.taco_cloud.User;
+import taco_proj.taco_cloud.entity.TacoOrder;
+import taco_proj.taco_cloud.entity.User;
 
 
 public interface OrderRepository extends CrudRepository<TacoOrder, Long>{
